@@ -14,16 +14,20 @@ class DayBlock extends React.Component<DayBlockProps> {
   render() {
     const { date, events } = this.props;
     return (
-      <Row className='border rounded-pill mt-1 mx-1 overflow-hidden'>
-        <Col xs={2} className='bg-dark text-light'>
-          {date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}{' '}
-          ({getDayOfWeek(date)})
+      <Row className='mt-1 mx-1'>
+        <Col xs={2} className='me-1'>
+          <Row className='bg-dark text-light rounded-pill'>
+            <div className='mx-1'>
+              {date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}{' '}
+              ({getDayOfWeek(date)})
+            </div>
+          </Row>
         </Col>
-        <Col>
+        <Col className='border rounded'>
           <EventBlock events={events} />
         </Col>
       </Row>

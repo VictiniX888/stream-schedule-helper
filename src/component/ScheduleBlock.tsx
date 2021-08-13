@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from 'react-bootstrap/esm/Container';
 import { getEvents } from '../integration/GoogleCalendar';
 import { compareDate } from '../types/Date';
 import Event from '../types/Event';
@@ -53,9 +54,13 @@ class ScheduleBlock extends React.Component<{}, ScheduleBLockState> {
 
     const partitionedEvents = this.groupEventsByDate(events);
 
-    return Array.from(partitionedEvents, ([date, eventGroup]) => (
-      <DayBlock date={date} events={eventGroup} />
-    ));
+    return (
+      <Container>
+        {Array.from(partitionedEvents, ([date, eventGroup]) => (
+          <DayBlock date={date} events={eventGroup} />
+        ))}
+      </Container>
+    );
   }
 }
 
