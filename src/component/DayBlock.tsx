@@ -7,12 +7,13 @@ import EventBlock from './EventBlock';
 
 type DayBlockProps = {
   date: Date;
+  timezone: string;
   events: Event[];
 };
 
 class DayBlock extends React.Component<DayBlockProps> {
   render() {
-    const { date, events } = this.props;
+    const { date, timezone, events } = this.props;
     return (
       <Row className='mt-1 mx-1'>
         <Col xs={2} className='me-1'>
@@ -22,13 +23,14 @@ class DayBlock extends React.Component<DayBlockProps> {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
+                timeZone: timezone,
               })}{' '}
               ({getDayOfWeek(date)})
             </div>
           </Row>
         </Col>
         <Col className='border rounded'>
-          <EventBlock events={events} />
+          <EventBlock events={events} timezone={timezone} />
         </Col>
       </Row>
     );

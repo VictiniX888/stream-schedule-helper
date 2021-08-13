@@ -2023,6 +2023,13 @@
     "@typescript-eslint/types" "4.15.2"
     eslint-visitor-keys "^2.0.0"
 
+"@vvo/tzdb@^6.9.0":
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/@vvo/tzdb/-/tzdb-6.9.0.tgz#f1841cdcd01b5bae552d87788789d625501f7e1f"
+  integrity sha512-0PcxXN5QT414p8j9eNlmcyHJKAFw5j212LYFHlQu0b3I/TqkgXdJABKe3P/n57ZaRqvwCdnmm8sqxodhvpO9nQ==
+  dependencies:
+    luxon "1.26.0"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -7042,6 +7049,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+luxon@1.26.0:
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.26.0.tgz#d3692361fda51473948252061d0f8561df02b578"
+  integrity sha512-+V5QIQ5f6CDXQpWNICELwjwuHdqeJM1UenlZWx5ujcRMc9venvluCjFb4t5NYLhb6IhkbMVOxzVuOqkgMxee2A==
 
 lz-string@^1.4.4:
   version "1.4.4"

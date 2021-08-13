@@ -5,11 +5,18 @@ import { compareDate } from '../types/Date';
 import Event from '../types/Event';
 import DayBlock from './DayBlock';
 
+type ScheduleBlockProps = {
+  timezone: string;
+};
+
 type ScheduleBLockState = {
   events?: Event[];
 };
 
-class ScheduleBlock extends React.Component<{}, ScheduleBLockState> {
+class ScheduleBlock extends React.Component<
+  ScheduleBlockProps,
+  ScheduleBLockState
+> {
   static CAL_ID = 'gd15qdug2f3mm1e9upk3d3us4s@group.calendar.google.com';
 
   state: ScheduleBLockState = {};
@@ -57,7 +64,12 @@ class ScheduleBlock extends React.Component<{}, ScheduleBLockState> {
     return (
       <Container>
         {Array.from(partitionedEvents, ([date, eventGroup]) => (
-          <DayBlock date={date} events={eventGroup} />
+          <DayBlock
+            key={date.toDateString()}
+            date={date}
+            timezone={this.props.timezone}
+            events={eventGroup}
+          />
         ))}
       </Container>
     );

@@ -5,11 +5,12 @@ import Event from '../types/Event';
 
 type EventBlockProps = {
   events: Event[];
+  timezone: string;
 };
 
 class EventBlock extends React.Component<EventBlockProps> {
   render() {
-    const { events } = this.props;
+    const { events, timezone } = this.props;
     return (
       <>
         {events.map((event) => (
@@ -20,6 +21,7 @@ class EventBlock extends React.Component<EventBlockProps> {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: false,
+                timeZone: timezone,
               })}
             </Col>
           </Row>
