@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import Event from '../types/Event';
 
 export async function getEvents(calendarId: string) {
@@ -14,7 +15,7 @@ export async function getEvents(calendarId: string) {
   const events: Event[] = eventsRaw.map((event: any) => {
     return {
       title: event.summary,
-      time: new Date(event.start.dateTime),
+      time: DateTime.fromISO(event.start.dateTime),
     } as Event;
   });
 

@@ -1,7 +1,7 @@
+import { DateTime } from 'luxon';
 import React from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { getEvents } from '../integration/GoogleCalendar';
-import { compareDate } from '../types/Date';
 import Event from '../types/Event';
 import DayBlock from './DayBlock';
 
@@ -27,23 +27,19 @@ class ScheduleBlock extends React.Component<
   }
 
   private groupEventsByDate = (events: Event[]) => {
-    let partitionedEvents = new Map<Date, Event[]>();
+    let partitionedEvents = new Map<DateTime, Event[]>();
 
-    let currentDate: Date | undefined;
+    let currentDate: DateTime | undefined;
     let group: Event[] = [];
     for (let i = 0; i < events.length; i++) {
       const event = events[i];
-      const time = event.time;
-      const date = new Date(
-        time.getFullYear(),
-        time.getMonth(),
-        time.getDate()
-      );
+      const time = event.time.setZone(this.props.timezone);
+      event.time = time;
 
-      if (currentDate === undefined || compareDate(currentDate, date) !== 0) {
+      if (currentDate === undefined || !currentDate.hasSame(time, 'day')) {
         group = [event];
-        partitionedEvents.set(date, group);
-        currentDate = date;
+        partitionedEvents.set(time, group);
+        currentDate = time;
       } else {
         group.push(event);
       }
@@ -59,17 +55,14 @@ class ScheduleBlock extends React.Component<
       return null;
     }
 
+    console.log(this.props.timezone);
+
     const partitionedEvents = this.groupEventsByDate(events);
 
     return (
       <Container>
         {Array.from(partitionedEvents, ([date, eventGroup]) => (
-          <DayBlock
-            key={date.toDateString()}
-            date={date}
-            timezone={this.props.timezone}
-            events={eventGroup}
-          />
+          <DayBlock key={date.toISODate()} date={date} events={eventGroup} />
         ))}
       </Container>
     );

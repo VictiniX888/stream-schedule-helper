@@ -1,6 +1,8 @@
+import { DateTime } from 'luxon';
+
 interface Event {
   title: string;
-  time: Date;
+  time: DateTime;
 }
 
 export default Event;
